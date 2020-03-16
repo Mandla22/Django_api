@@ -24,6 +24,7 @@ class UsageList(APIView):
         queryset = Usage.objects.all()
         f = Filter()
         filtered_queryset = f.filter_queryset(request, queryset, self)
+        serialized = UsageSerializer(queryset, many=True)
         if filtered_queryset.exists():
             serialized = UsageSerializer(filtered_queryset, many=True)
 
